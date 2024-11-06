@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://i.postimg.cc/XYjWrv36/dark-hexagonal-background-with-gradient-color_79603-1409.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .box {
+            width: 400px;
+            background: #1c1c1c;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: #45f3ff;
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #28292d;
+            color: #fff;
+            transition: border-color 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #45f3ff;
+            outline: none;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: #45f3ff;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #36c6d1;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: #45f3ff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: #d9138a;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="input-box">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error-message">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <input type="submit" value="Login">
+            <div class="links">
+                <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
